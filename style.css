@@ -1,0 +1,26 @@
+main {
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007baf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #005f8c;
+  }
+  
+  footer {
+    background-color: #dddddd;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
