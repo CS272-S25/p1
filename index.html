@@ -1,36 +1,43 @@
-<!DOCTYPE html> <!-- Disclaimer this is the home page, labeled as index.html-->
-<html lang="en">
-<head>
+<!DOCTYPE html> <!-- Disclaimer this is the home page, labeled as index.html (Stefan M)-->
+<html lang="en"> <!--Html document has language set to english (Stefan M)-->
+
+<head> <!-- Contains the meta information (Stefan M)-->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Initial scale was placed so website looks good on mobile devices as well-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Initial scale was placed so website looks good on mobile devices as well(Stefan M)-->
   <title>UW Madison Intramural Sports</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" /> <!--Links to style sheet should be on every page (Stefan M)-->
 </head>
-<header>
-    <h1>UW Madison Intramural Sports</h1>
-    <nav>
+
+<body> <!-- Main content on page(Stefan M)-->
+
+  <header> <!--Top section of page(Stefan M)-->
+    <h1>UW Madison Intramural Sports</h1> <!--Main Heading (Stefan M)-->
+    
+    <nav> <!--Nav Bar for this page includes index, register, teams, and schedule(Stefan M) -->
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Teams</a></li>
-        <li><a href="#">Schedule</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="teams.html">Team Registration</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="myTeam.html">My Team</a></li>
+        <li><a href="admin.html">Admin Page</a></li>
       </ul>
     </nav>
+
   </header>
 
-  <main>
-    <section id="intro">
+  <main> <!--Main content of page(Stefan M)-->
+    <section id="intro"> <!--Section ID labels this section as the intro section(Stefan M)-->
       <h2>Welcome to the UW Madison Intramural Sports Website</h2>
-      <p>This is where you can register, manage your teams, view schedules, and more.</p>
-      <button onclick="showAlert()">Proceed To Intramural Hub</button>
+      <p>This is where you can register, manage your teams, and view schedules.</p>
+      <button onclick="showAlert()">Proceed To Register Hub</button> <!--When clicked javascript function brings user to Register page hub(Stefan M)-->
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 UW-Madison | Group 1</p>
+    <p>&copy; 2025 UW-Madison | Group 1</p> <!--Group label showing that this our work, will be on every page make sure to add(Stefan M)-->
   </footer>
 
   
-  <script src="script.js"></script>
+  <script src="script.js"></script> <!--Links the javascript file so that the this page has proper behavior-->
 </body>
 </html>

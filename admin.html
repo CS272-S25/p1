@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | UW Madison Intramural Sports</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  
+    <header>
+    <h1>Admin Panel</h1>
+    <nav>
+      
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="teams.html">Team Registration</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="myTeam.html">My Team</a></li>
+        <li><a href="admin.html">Admin Page</a></li>
+      </ul>
+    
+    </nav>
+  </header>
+
+  <main>
+    <h2>Team Management (Admin Only)</h2>
+    
+    <!--Password input to access admin page content(Stefan M)-->
+    <input type="password" id="adminPass" placeholder="Enter Admin Password" />
+    <button onclick="unlockAdmin()">Enter</button> <!--Button for user to press in order to check password inputted(Stefan M)-->
+    
+    <!--This content is displayed to user after password has been correctly entered(Stefan M)-->
+    <div id="adminContent" style="display: none;">
+      <ul id="allTeamsList"></ul> <!--List where all teams will be displayed with js(Stefan M)-->
+    </div>
+  
+  </main>
+
+  <footer>
+    <p>&copy; 2025 UW-Madison | Group 1</p>
+  </footer>
+
+  <script src="script.js"></script> <!--JavaScript file where password check, team display, and delete functions exist(Stefan M) -->
+
+</body>
+</html>

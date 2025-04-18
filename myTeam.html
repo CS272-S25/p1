@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Teams | UW Madison Intramural Sports</title>
+  <link rel="stylesheet" href="style.css" /> 
+</head>
+
+<body>
+  
+    <header>
+    <h1>My Teams</h1> <!--Main Heading(Stefan M)-->
+    <nav> <!--Nav Bar should be the same as rest of navbars(Stefan M)-->
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="teams.html">Team Registration</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="myTeam.html">My Team</a></li>
+        <li><a href="admin.html">Admin Page</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main> <!--Main content for this page(Stefan M)-->
+    <h2>Teams You're Part Of</h2>
+    <!--Input area for user to type name and search for team(Stefan M)-->
+    <input type="text" id="userNameInput" placeholder="Enter your name" /> 
+    
+    <!--This button starts function to display teams for that user(Stefan M)-->
+    <button onclick="loadUserTeams()">View My Teams</button>
+    
+    <!--List that is filled with user's team by using js(Stefan M)-->
+    <ul id="userTeamsList"></ul>
+  </main>
+
+  <footer> <!--Footer should be on all pages(Stefan M)-->
+    <p>&copy; 2025 UW-Madison | Group 1</p>
+  </footer>
+
+  <script src="script.js"></script> <!--JS link should be on all pages that use js as well(Stefan M)-->
+</body>
+</html>

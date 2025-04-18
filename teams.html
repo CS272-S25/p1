@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Registration | UW Madison Intramural Sports</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>UW Madison Intramural Sports</h1>
+
+    <nav> <!--Nav Bar should be the same on every page(Stefan M)-->
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="teams.html">Team Registration</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="myTeam.html">My Team</a></li>
+        <li><a href="admin.html">Admin Page</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Team Management</h2>
+
+    <!-- This section is a form to create a new team(Stefan M) -->
+    <section>
+      <h3>Create a New Team</h3>
+      <form id="createTeamForm"> <!--Form for users to create a new team(Stefan M)-->
+        <input type="text" id="teamName" placeholder="Team Name" required /> <!--User input area for user's name(Stefan M)-->
+
+        <select id="teamSport" required> <!--Dropdown menu is filled up with team names inputted by users(Stefan M)-->
+          <option value="">Select a Sport</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Soccer">Soccer</option>
+          <option value="Volleyball">Volleyball</option>
+          <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+        </select>
+        
+        <button type="submit">Create Team</button> <!--Button for user to submit team creation(Stefan M)-->
+      </form>
+    </section>
+
+    <!-- This section is a form to join a team(Stefan M) -->
+    <section>
+      <h3>Join a Team</h3>
+      <form id="joinTeamForm"> <!--Form for users to join an already made team(Stefan M)-->
+        <input type="text" id="memberName" placeholder="Your Name" required /> <!--User input for adding name and joining team(Stefan M)-->
+        <select id="joinTeamSelect" required> <!--Drop down menu that gets filled with teams that have been made(Stefan M)-->
+          <option value="">Select a Team</option>
+        </select>
+        <button type="submit">Join Team</button> <!--Submit button for user that wants to join(Stefan M)-->
+      </form>
+    </section>
+
+    <!-- This section displays the team list and members(Stefan M)-->
+    <section>
+      <h3>Teams</h3>
+      <ul id="teamList"></ul> <!--List that is not ordered that will include team names and members(Stefan M)-->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 UW-Madison | Group 1</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
