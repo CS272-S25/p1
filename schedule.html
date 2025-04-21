@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>UW Madison Sports Schedule</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #eee;
+    }
+
+    h1 {
+      color: #222;
+    }
+
+    select {
+      margin-top: 10px;
+      padding: 5px;
+    }
+
+    .schedule {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+    }
+
+    .schedule h2 {
+      margin-top: 0;
+    }
+
+    .schedule ul {
+      padding-left: 15px;
+    }
+
+    .schedule li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Intramural Sports Schedule</h1>
+
+  <label for="sport">Pick a sport:</label>
+  <select id="sport">
+    <option value="basketball">Basketball</option>
+    <option value="soccer">Soccer</option>
+    <option value="volleyball">Volleyball</option>
+    <option value="ultimate">Ultimate Frisbee</option>
+  </select>
+
+  <div class="schedule" id="schedule">
+    <!-- Schedule shows up here -->
+  </div>
+
+  <script>
+    const allSchedules = {
+      basketball: [
+        "Mon 6PM: Hoopers vs Dunk Squad",
+        "Wed 7PM: Net Breakers vs Rim Rattlers"
+      ],
+      soccer: [
+        "Tue 5PM: Goal Diggers vs Net Ninjas",
+        "Thu 6PM: Red Cards vs Kickin' It"
+      ],
+      volleyball: [
+        "Mon 8PM: Spike Squad vs Set for Life",
+        "Wed 6PM: Block Party vs Net Results"
+      ],
+      ultimate: [
+        "Tue 7PM: Frisbee Fanatics vs Sky Spikers",
+        "Thu 5PM: Disc Jockeys vs Floaters"
+      ]
+    };
+
+    const sportDropdown = document.getElementById("sport");
+    const scheduleBox = document.getElementById("schedule");
+
+    function showSchedule() {
+      const sport = sportDropdown.value;
+      const games = allSchedules[sport];
+
+      let html = `<h2>${sportDropdown.options[sportDropdown.selectedIndex].text}</h2>`;
+      html += "<ul>";
+
+      games.forEach(function(game) {
+        html += `<li>${game}</li>`;
+      });
+
+      html += "</ul>";
+
+      scheduleBox.innerHTML = html;
+    }
+
+    sportDropdown.addEventListener("change", showSchedule);
+
+    // Show the first sport by default
+    window.onload = showSchedule;
+  </script>
+
+</body>
+</html>
