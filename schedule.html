@@ -4,21 +4,25 @@
   <meta charset="UTF-8">
   <title>UW Madison Sports Schedule</title>
   <style>
+    /* Basic styling for the body */
     body {
       font-family: sans-serif;
       padding: 20px;
       background: #eee;
     }
 
+    /* Style for the main heading */
     h1 {
       color: #222;
     }
 
+    /* Style for the dropdown menu */
     select {
       margin-top: 10px;
       padding: 5px;
     }
 
+    /* Style for the schedule display box */
     .schedule {
       margin-top: 20px;
       background: #fff;
@@ -26,10 +30,12 @@
       border: 1px solid #ccc;
     }
 
+    /* Style for the schedule's heading */
     .schedule h2 {
       margin-top: 0;
     }
 
+    /* Style for the list of games */
     .schedule ul {
       padding-left: 15px;
     }
@@ -41,8 +47,10 @@
 </head>
 <body>
 
+  <!-- Main title of the page -->
   <h1>Intramural Sports Schedule</h1>
 
+  <!-- Label and dropdown for selecting a sport -->
   <label for="sport">Pick a sport:</label>
   <select id="sport">
     <option value="basketball">Basketball</option>
@@ -51,11 +59,13 @@
     <option value="ultimate">Ultimate Frisbee</option>
   </select>
 
+  <!-- This div will contain the schedule for the selected sport -->
   <div class="schedule" id="schedule">
     <!-- Schedule shows up here -->
   </div>
 
   <script>
+    // Object storing schedules for each sport
     const allSchedules = {
       basketball: [
         "Mon 6PM: Hoopers vs Dunk Squad",
@@ -75,30 +85,39 @@
       ]
     };
 
+    // Reference to the dropdown and schedule display box
     const sportDropdown = document.getElementById("sport");
     const scheduleBox = document.getElementById("schedule");
 
+    // Function to display the schedule based on selected sport
     function showSchedule() {
+      // Get the selected sport
       const sport = sportDropdown.value;
+      // Retrieve the corresponding games array
       const games = allSchedules[sport];
 
+      // Start building the HTML content
       let html = `<h2>${sportDropdown.options[sportDropdown.selectedIndex].text}</h2>`;
       html += "<ul>";
 
+      // Add each game as a list item
       games.forEach(function(game) {
         html += `<li>${game}</li>`;
       });
 
       html += "</ul>";
 
+      // Insert the generated HTML into the schedule box
       scheduleBox.innerHTML = html;
     }
 
+    // Attach event listener to dropdown to update schedule on change
     sportDropdown.addEventListener("change", showSchedule);
 
-    // Show the first sport by default
+    // Automatically show the schedule for the first sport when page loads
     window.onload = showSchedule;
   </script>
 
 </body>
 </html>
+
