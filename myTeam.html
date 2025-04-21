@@ -41,3 +41,35 @@
   <script src="script.js"></script> <!--JS link should be on all pages that use js as well(Stefan M)-->
 </body>
 </html>
+
+<script> //custom JS for myTeam
+
+//loads and shows all the teams that the user is part of
+  function loadUserTeams() {
+    const userName = document.getElementById("userNameInput").value.trim();// This gets the user's name
+    const userList = document.getElementById("userTeamsList");// This the userlist that displays the teams
+    const teams = getTeams(); //this loads all the teams
+  
+    userList.innerHTML = ""; //this clears the previous results from other users
+  
+    //This loops through each team and checks if the user is a member in the list
+    for (const [teamName, data] of Object.entries(teams)) {
+      if (data.members.includes(userName)) {
+        const li = document.createElement("li"); //This creates a list item 
+        li.innerHTML = `<strong>${teamName}</strong> (${data.sport})
+          <button onclick="leaveTeam('${teamName}', '${userName}')">Leave</button>`; //This includes the leave button
+        userList.appendChild(li);
+      }
+    }
+  }
+  
+  //This removes the user from the selected team 
+  function leaveTeam(teamName, userName) {
+    const teams = getTeams();
+    if (teams[teamName]) {
+      teams[teamName].members = teams[teamName].members.filter(m => m !== userName); //This removes the member 
+      saveTeams(teams); //This will save the updated made
+      loadUserTeams(); //This will refresh the list after
+    }
+  }
+  </script>

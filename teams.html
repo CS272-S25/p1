@@ -86,3 +86,53 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+ 
+<script> // Custom JS for teams.html
+  document.addEventListener("DOMContentLoaded", () => {
+    const createForm = document.getElementById("createTeamForm"); // form for creating new team
+    const joinForm = document.getElementById("joinTeamForm"); //form for joining an existing team
+  
+  // Handling for form creation
+    if (createForm) {
+      createForm.addEventListener("submit", (e) => {
+        e.preventDefault(); //stops form creation from reloading web page
+        
+        const teamName = document.getElementById("teamName").value.trim();// gets the entered team name from user
+        const sport = document.getElementById("teamSport").value;// gets the selected sport from user
+  
+        const teams = getTeams();//this loads the existing team from the storage
+
+        if (teamName && sport && !teams[teamName]) {
+          teams[teamName] = { sport: sport, members: [] };
+          saveTeams(teams);
+          updateTeamUI();
+          createForm.reset();
+        } else {
+          alert("Team name must be unique and sport selected!");
+        }
+      });
+    }
+  //Handling for joining team
+    if (joinForm) {
+      joinForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("memberName").value.trim(); //User's name
+        const teamName = document.getElementById("joinTeamSelect").value;// User's selected team
+  
+        const teams = getTeams();
+        //This adds a member if they are valid and are not already in a team
+        if (name && teamName && teams[teamName] && !teams[teamName].members.includes(name)) {
+          teams[teamName].members.push(name);
+          saveTeams(teams);
+          updateTeamUI();
+          joinForm.reset();
+        }
+      });
+    }
+   //This loads the User Interface when the page opens
+    if (document.getElementById("joinTeamSelect")) {
+      updateTeamUI();
+    }
+  });
+  </script>
