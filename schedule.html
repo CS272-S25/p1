@@ -1,14 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>UW Madison Sports Schedule</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Teams | UW Madison Intramural Sports</title>
+  <link rel="stylesheet" href="style.css" /> <!-- Link to external CSS -->
+
   <style>
     /* Basic styling for the body */
     body {
       font-family: sans-serif;
       padding: 20px;
       background: #eee;
+    }
+
+    /* Style for the header section */
+    header {
+      background: #fff;
+      padding: 10px 20px;
+      border-bottom: 2px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    /* Main Heading (Stefan M) */
+    header h1 {
+      margin: 0;
+      color: #c5050c;
+    }
+
+    /* Nav Bar should be the same as rest of navbars (Stefan M) */
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
     }
 
     /* Style for the main heading */
@@ -46,6 +86,20 @@
   </style>
 </head>
 <body>
+  
+  <!-- Header section with navigation -->
+  <header>
+    <h1>My Teams</h1> <!-- Main Heading (Stefan M) -->
+    <nav> <!-- Nav Bar should be the same as rest of navbars (Stefan M) -->
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="teams.html">Team Registration</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="myTeam.html">My Team</a></li>
+        <li><a href="admin.html">Admin Page</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- Main title of the page -->
   <h1>Intramural Sports Schedule</h1>
@@ -106,18 +160,4 @@
       });
 
       html += "</ul>";
-
-      // Insert the generated HTML into the schedule box
-      scheduleBox.innerHTML = html;
-    }
-
-    // Attach event listener to dropdown to update schedule on change
-    sportDropdown.addEventListener("change", showSchedule);
-
-    // Automatically show the schedule for the first sport when page loads
-    window.onload = showSchedule;
-  </script>
-
-</body>
-</html>
 
