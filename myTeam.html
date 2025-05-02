@@ -4,72 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Teams | UW Madison Intramural Sports</title>
-  <link rel="stylesheet" href="style.css" /> 
+  <link rel="stylesheet" href="style.css" /><!-- Global style sheet-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!--Bootstrap -->
+
+  <style> /*Same on all pages*/
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #dddddd;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+
 </head>
 
 <body>
+
+<header>
+
+  <h1>My Teams</h1>
+
+  <nav class="bg-danger text-white p-3">
+    <ul class="nav justify-content-center"> <!--Centers the navigation bar horizontally-->
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="teams.html">Team Registration</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="schedule.html">Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="myTeam.html">My Team</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="admin.html">Admin Page</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="Esports.html">Esports Info</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="creators.html">About Us</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+  <h2>Teams You're Part Of</h2>
+
+  <input type="text" id="userNameInput" placeholder="Enter your name" class="form-control mb-3" /> <!--Input field where user types their name-->
+  <button class="btn btn-primary mb-4" onclick="loadUserTeams()">View My Teams</button> <!--Buttons calls loadUserTeams on button press-->
+
+  <ul id="userTeamsList" class="list-group"></ul> <!--Teams listed out here dynamically (list updates as items are added to list)-->
+</main>
+
+<!-- Recreation Wellbeing logo and footer under content -->
+<div class="text-center my-4">
+  <img src="wellbeingimage.png" alt="Recreation & Wellbeing UW Madison" style="max-width: 200px;">
+</div>
+
+<footer>
+  <p>&copy; 2025 UW-Madison | Group 1</p>
+</footer>
+
+<!-- Multiple pages use these functions -->
+<script>
+
+const STORAGE_KEY = "teamsData"; //Key name for local storage 
+
+function getTeams() { //This function gets the teams from local storage and if there are no teams it returns an empty object
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+}
+
+function saveTeams(teams) { // This function saves the teams to the loal storage
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+}
+
+</script>
+
+<!-- Custom Page Functions -->
+<script>
+function loadUserTeams() { //Thisi function loads the team that the user is part of and then displays it to the user
   
-    <header>
-    <h1>My Teams</h1> <!--Main Heading(Stefan M)-->
-    <nav> <!--Nav Bar should be the same as rest of navbars(Stefan M)-->
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="teams.html">Team Registration</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="myTeam.html">My Team</a></li>
-        <li><a href="admin.html">Admin Page</a></li>
-      </ul>
-    </nav>
-  </header>
+  const userName = document.getElementById("userNameInput").value.trim(); //Gets user inputted name
+  const userList = document.getElementById("userTeamsList"); //List where the names will go
+  const teams = getTeams(); //Loads the names to the local storage
 
-  <main> <!--Main content for this page(Stefan M)-->
-    <h2>Teams You're Part Of</h2>
-    <!--Input area for user to type name and search for team(Stefan M)-->
-    <input type="text" id="userNameInput" placeholder="Enter your name" /> 
+  userList.innerHTML = ""; // Clears the previous results
+  let found = false; //This tracks if the user is part of any of the teams
+
+  for (const [teamName, data] of Object.entries(teams)) { //Loops through the teams to check the membership of user
     
-    <!--This button starts function to display teams for that user(Stefan M)-->
-    <button onclick="loadUserTeams()">View My Teams</button>
-    
-    <!--List that is filled with user's team by using js(Stefan M)-->
-    <ul id="userTeamsList"></ul>
-  </main>
+    if (data.members.includes(userName)) { //True if the user is part of the team
+      found = true; //marks user as found
+      const li = document.createElement("li"); // Creates a list item if user found
+      
+      li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center"); //Adds bootstrap classes
+      
+      //Team info and leave button to item in list
+      li.innerHTML = `<strong>${teamName}</strong> (${data.sport}) 
+        <button class="btn btn-danger btn-sm" onclick="leaveTeam('${teamName}', '${userName}')">Leave</button>`;
 
-  <footer> <!--Footer should be on all pages(Stefan M)-->
-    <p>&copy; 2025 UW-Madison | Group 1</p>
-  </footer>
+      userList.appendChild(li);//adds item to list
+    }
+  }
 
-  <script src="script.js"></script> <!--JS link should be on all pages that use js as well(Stefan M)-->
+  if (!found) { //Shows message if user is not found in teams
+    userList.innerHTML = "<li class='list-group-item'>You are not part of any teams.</li>";
+  }
+}
+
+function leaveTeam(teamName, userName) { //This function allows users to leave a team
+  const teams = getTeams(); //loads the teams 
+  
+  if (teams[teamName]) { 
+
+    teams[teamName].members = teams[teamName].members.filter(m => m !== userName); //remove user from team  
+    saveTeams(teams);//save the updated team
+    alert("You left the team."); //give feedback to user allowing them to know that they left team
+    loadUserTeams(); //Reloads the list after the process
+  }
+}
+</script>
+
 </body>
 </html>
-
-<script> //custom JS for myTeam
-
-//loads and shows all the teams that the user is part of
-  function loadUserTeams() {
-    const userName = document.getElementById("userNameInput").value.trim();// This gets the user's name
-    const userList = document.getElementById("userTeamsList");// This the userlist that displays the teams
-    const teams = getTeams(); //this loads all the teams
-  
-    userList.innerHTML = ""; //this clears the previous results from other users
-  
-    //This loops through each team and checks if the user is a member in the list
-    for (const [teamName, data] of Object.entries(teams)) {
-      if (data.members.includes(userName)) {
-        const li = document.createElement("li"); //This creates a list item 
-        li.innerHTML = `<strong>${teamName}</strong> (${data.sport})
-          <button onclick="leaveTeam('${teamName}', '${userName}')">Leave</button>`; //This includes the leave button
-        userList.appendChild(li);
-      }
-    }
-  }
-  
-  //This removes the user from the selected team 
-  function leaveTeam(teamName, userName) {
-    const teams = getTeams();
-    if (teams[teamName]) {
-      teams[teamName].members = teams[teamName].members.filter(m => m !== userName); //This removes the member 
-      saveTeams(teams); //This will save the updated made
-      loadUserTeams(); //This will refresh the list after
-    }
-  }
-  </script>

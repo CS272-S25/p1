@@ -5,134 +5,205 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Team Registration | UW Madison Intramural Sports</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #dddddd;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <h1>UW Madison Intramural Sports</h1>
+<header>
 
-    <nav> <!--Nav Bar should be the same on every page(Stefan M)-->
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="teams.html">Team Registration</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="myTeam.html">My Team</a></li>
-        <li><a href="admin.html">Admin Page</a></li>
-      </ul>
-    </nav>
-  </header>
+  <h1>UW Madison Intramural Sports</h1>
 
-  <main>
-    <h2>Team Management</h2>
+  <nav class="bg-danger text-white p-3">
+    <ul class="nav justify-content-center">
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="teams.html">Team Registration</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="schedule.html">Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="myTeam.html">My Team</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="admin.html">Admin Page</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="Esports.html">Esports Info</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="creators.html">About Us</a></li>
+    </ul>
+  </nav>
 
-    <!-- This section is a form to create a new team(Stefan M) -->
-    <section>
-      <h3>Create a New Team</h3>
-      <form id="createTeamForm"> <!--Form for users to create a new team(Stefan M)-->
-        <input type="text" id="teamName" placeholder="Team Name" required /> <!--User input area for user's name(Stefan M)-->
+</header>
 
-        <select id="teamSport" required> <!--Dropdown menu is filled up with team names inputted by users(Stefan M)-->
-          <option value="">--Choose a Sport--</option>
-          <option value="basketball">Basketball</option>
-          <option value="soccer">Soccer</option>
-          <option value="volleyball">Volleyball</option>
-          <option value="ultimate">Ultimate Frisbee</option>
-          <option value="badminton">Badminton</option>
-          <option value="beachvolleyball">Beach Volleyball</option>
-          <option value="cricket">Cricket</option>
-          <option value="dogeball">Dogeball</option>
-          <option value="flagfootball">Flag Football</option>
-          <option value="floorhockey">Floor Hockey</option>
-          <option value="golf">Golf</option>
-          <option value="icehockey">Ice Hockey</option>
-          <option value="indoorsoccer">Indoor Soccer</option>
-          <option value="pickleball">Pickleball</option>
-          <option value="softball">Softball</option>
-          <option value="spikeball">spikeball</option>
-          <option value="supersmashbros">Super Smash Bros</option>
-          <option value="tabletennis">Table Tennis</option>
-          <option value="tennis">Tennis</option>
-          <option value="trivia">Trivia</option>
-          <option value="esports">Esports</option>
-        </select>
-        
-        <button type="submit">Create Team</button> <!--Button for user to submit team creation(Stefan M)-->
-      </form>
-    </section>
+<main>
+  <h2>Team Management</h2>
 
-    <!-- This section is a form to join a team(Stefan M) -->
-    <section>
-      <h3>Join a Team</h3>
-      <form id="joinTeamForm"> <!--Form for users to join an already made team(Stefan M)-->
-        <input type="text" id="memberName" placeholder="Your Name" required /> <!--User input for adding name and joining team(Stefan M)-->
-        <select id="joinTeamSelect" required> <!--Drop down menu that gets filled with teams that have been made(Stefan M)-->
-          <option value="">Select a Team</option>
-        </select>
-        <button type="submit">Join Team</button> <!--Submit button for user that wants to join(Stefan M)-->
-      </form>
-    </section>
+  <!-- Creates team form -->
+  <section>
+    
+    <h3>Create a New Team</h3>
 
-    <!-- This section displays the team list and members(Stefan M)-->
-    <section>
-      <h3>Teams</h3>
-      <ul id="teamList"></ul> <!--List that is not ordered that will include team names and members(Stefan M)-->
-    </section>
-  </main>
+    <form id="createTeamForm"><!--Form to create new team-->
 
-  <footer>
-    <p>&copy; 2025 UW-Madison | Group 1</p>
-  </footer>
+      <input type="text" id="teamName" placeholder="Team Name" required class="form-control mb-2" />  <!--Input field for team name -->
+      
+      <select id="teamSport" required class="form-select mb-2"> <!--Drop down select for sport-->
+        <option value="">--Choose a Sport--</option>
+        <option value="basketball">Basketball</option>
+        <option value="soccer">Soccer</option>
+        <option value="volleyball">Volleyball</option>
+        <option value="ultimate">Ultimate Frisbee</option>
+        <option value="esports">Esports</option>
+      </select>
+      
+      <button type="submit" class="btn btn-primary">Create Team</button><!--Submit button to create team-->
+    </form>
 
-  <script src="script.js"></script>
+  </section>
+
+  <!-- Join team form -->
+  <section class="mt-4">
+
+    <h3>Join a Team</h3>
+
+    <form id="joinTeamForm"> <!--Form to create new team-->
+
+      <input type="text" id="memberName" placeholder="Your Name" required class="form-control mb-2" /> <!--Input field for user name-->
+      
+      <select id="joinTeamSelect" required class="form-select mb-2"> <!--Drop select for team-->
+        <option value="">Select a Team</option>
+      </select>
+
+      <button type="submit" class="btn btn-success">Join Team</button> <!--Submit button to join team-->
+    </form>
+  </section>
+
+  <!-- Team list Display -->
+  <section class="mt-4">
+    <h3>Teams</h3>
+    <ul id="teamList" class="list-group"></ul>
+  </section>
+</main>
+
+<!-- Recreation Wellbeing logo and footer under content -->
+<div class="text-center my-4">
+  <img src="wellbeingimage.png" alt="Recreation & Wellbeing UW Madison" style="max-width: 200px;">
+</div>
+
+<footer>
+  <p>&copy; 2025 UW-Madison | Group 1</p>
+</footer>
+
+<!-- Shared storage functions -->
+<script>
+// Save/load teams functions 
+const STORAGE_KEY = "teamsData"; //Keyname for local storage
+
+function getTeams() {
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+}
+
+function saveTeams(teams) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+}
+</script>
+
+<script>
+// These functions are for creating team and joining team
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const createForm = document.getElementById("createTeamForm");
+  const joinForm = document.getElementById("joinTeamForm");
+
+  // Handle creating new team
+  if (createForm) {
+    createForm.addEventListener("submit", (e) => {
+      e.preventDefault(); //prevents page reload
+
+      const teamName = document.getElementById("teamName").value.trim();
+      const sport = document.getElementById("teamSport").value;
+      const teams = getTeams();
+
+      if (teamName && sport && !teams[teamName]) { //validates the user input for team creation requiremetns
+        teams[teamName] = { sport: sport, members: [] };
+        saveTeams(teams);
+        alert("Team Created Successfully!");
+        updateTeamUI();
+        createForm.reset();
+      
+      } else {
+        alert("Team name must be unique and sport selected!"); //Feedback for user who fails to create team name to requirements
+      }
+    });
+  }
+
+  // Functions for joining existing team
+  if (joinForm) {
+    joinForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("memberName").value.trim();
+      const teamName = document.getElementById("joinTeamSelect").value;
+      const teams = getTeams();
+      
+      //Checks to see if user is able to join team
+      if (name && teamName && teams[teamName] && !teams[teamName].members.includes(name)) {
+        teams[teamName].members.push(name);
+        saveTeams(teams);
+        alert("You Joined The Team!");
+        updateTeamUI();
+        joinForm.reset();
+      
+      } else {
+        alert("Invalid join attempt or already a member."); //if user cannot join team or is already member gives feeback to user letting them know
+      }
+    });
+  }
+
+  // When page load, populates team list + join dropdown
+  if (document.getElementById("joinTeamSelect")) {
+    updateTeamUI();
+  }
+});
+
+// This function updates the team list and join dropdown
+function updateTeamUI() {
+  
+  const teamList = document.getElementById("teamList");
+  const joinSelect = document.getElementById("joinTeamSelect");
+  const teams = getTeams();
+
+  teamList.innerHTML = "";
+  joinSelect.innerHTML = `<option value="">Select a Team</option>`; //resets the dropdown for user
+
+  for (const [teamName, data] of Object.entries(teams)) { //Loops through each team and displays it
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    li.innerHTML = `<strong>${teamName}</strong> (${data.sport})<br>Members: ${data.members.join(", ") || "None"}`;
+    teamList.appendChild(li);
+
+    const option = document.createElement("option");
+    option.value = teamName;
+    option.textContent = teamName;
+    joinSelect.appendChild(option);
+  }
+}
+</script>
+
 </body>
 </html>
-
- 
-<script> // Custom JS for teams.html
-  document.addEventListener("DOMContentLoaded", () => {
-    const createForm = document.getElementById("createTeamForm"); // form for creating new team
-    const joinForm = document.getElementById("joinTeamForm"); //form for joining an existing team
-  
-  // Handling for form creation
-    if (createForm) {
-      createForm.addEventListener("submit", (e) => {
-        e.preventDefault(); //stops form creation from reloading web page
-        
-        const teamName = document.getElementById("teamName").value.trim();// gets the entered team name from user
-        const sport = document.getElementById("teamSport").value;// gets the selected sport from user
-  
-        const teams = getTeams();//this loads the existing team from the storage
-
-        if (teamName && sport && !teams[teamName]) {
-          teams[teamName] = { sport: sport, members: [] };
-          saveTeams(teams);
-          updateTeamUI();
-          createForm.reset();
-        } else {
-          alert("Team name must be unique and sport selected!");
-        }
-      });
-    }
-  //Handling for joining team
-    if (joinForm) {
-      joinForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const name = document.getElementById("memberName").value.trim(); //User's name
-        const teamName = document.getElementById("joinTeamSelect").value;// User's selected team
-  
-        const teams = getTeams();
-        //This adds a member if they are valid and are not already in a team
-        if (name && teamName && teams[teamName] && !teams[teamName].members.includes(name)) {
-          teams[teamName].members.push(name);
-          saveTeams(teams);
-          updateTeamUI();
-          joinForm.reset();
-        }
-      });
-    }
-   //This loads the User Interface when the page opens
-    if (document.getElementById("joinTeamSelect")) {
-      updateTeamUI();
-    }
-  });
-  </script>

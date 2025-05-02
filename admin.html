@@ -1,85 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel | UW Madison Intramural Sports</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--Ensures that page is responsive and looks appealing with all devices-->
+  <title>Admin Panel | UW Madison Intramural Sports</title> <!--This should show the title of the page in browser tab-->
+  
+  <link rel="stylesheet" href="style.css" /> <!--Global stylesheet should be found on every page-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!--Bootstrap CSS for structure and nav bar (button not implemented)-->
+
+  <style> /*Custom CSS in order to make image and footer stick to bottom of the page*/
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      background-color: white; /* This makes sure the main content area is not red */
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #dddddd;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
 
 <body>
+
+<header>
   
-    <header>
-    <h1>Admin Panel</h1>
-    <nav>
-      
-        <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="teams.html">Team Registration</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="myTeam.html">My Team</a></li>
-        <li><a href="admin.html">Admin Page</a></li>
-      </ul>
-    
-    </nav>
-  </header>
+  <h1>Admin Panel</h1> 
+  <!--NavBar should include Bootstrap styling and all sports-->
+  <nav class="bg-danger text-white p-3">
+    <ul class="nav justify-content-center">
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="teams.html">Team Registration</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="schedule.html">Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="myTeam.html">My Team</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="admin.html">Admin Page</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="Esports.html">Esports Info</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="creators.html">About Us</a></li>
+    </ul>
+  </nav>
 
-  <main>
-    <h2>Team Management (Admin Only)</h2>
-    
-    <!--Password input to access admin page content(Stefan M)-->
-    <input type="password" id="adminPass" placeholder="Enter Admin Password" />
-    <button onclick="unlockAdmin()">Enter</button> <!--Button for user to press in order to check password inputted(Stefan M)-->
-    
-    <!--This content is displayed to user after password has been correctly entered(Stefan M)-->
-    <div id="adminContent" style="display: none;">
-      <ul id="allTeamsList"></ul> <!--List where all teams will be displayed with js(Stefan M)-->
-    </div>
+</header>
+
+<main>
   
-  </main>
+  <h2>Team Management (Admin Only)</h2> <!--Subheading-->
 
-  <footer>
-    <p>&copy; 2025 UW-Madison | Group 1</p>
-  </footer>
+  <input type="password" id="adminPass" placeholder="Enter Admin Password" /> <!--This is the input field to put admin password (password admin123)-->
+  <button class="btn btn-primary" onclick="unlockAdmin()">Enter</button> <!--Calls unlock admin function when clicked-->
 
-  <script src="script.js"></script> <!--JavaScript file where password check, team display, and delete functions exist(Stefan M) -->
+  <div id="adminContent" style="display: none;"> <!--Hides admin content by default unless admin password is entered correctly-->
+    <ul id="allTeamsList"></ul> <!--List should be shown and changed when teams are added or deleted-->
+  </div>
+
+</main>
+
+
+<div class="text-center my-4"> <!--UW Madison Recreation and Well being logo at bottom of page-->
+  <img src="wellbeingimage.png" alt="Recreation & Wellbeing UW Madison" style="max-width: 200px;">
+</div>
+
+<footer> <!--Footer should have 2025 UW-Madison | Group 1-->
+  <p>&copy; 2025 UW-Madison | Group 1</p>
+</footer>
+
+<!-- Saves and loads team data in the local storage -->
+<script>
+
+const STORAGE_KEY = "teamsData"; //key named that is used in local storage.
+
+function getTeams() { //loads team data from the local storage
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+}
+
+function saveTeams(teams) { //saves the updated team data to the local storage
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+}
+
+</script>
+
+<!-- Admin Page Logic -->
+<script>
+const ADMIN_PASSWORD = "admin123"; //admin password (hard coded)
+
+function unlockAdmin() { //This function should be called when the "Enter" button is pressed
+  const inputPass = document.getElementById("adminPass").value; //Gets what the user typed
+
+  if (inputPass === ADMIN_PASSWORD) {
+    document.getElementById("adminContent").style.display = "block"; //if the password is correct shows the admin block content and controls
+    showAllTeamsAdmin(); // this loads and displays on the teams to the admin
+  
+  } else {
+    alert("Incorrect password."); //else displays an alert allowing the user to know that their password is incorrect
+  }
+}
+
+//This function displays all the teams in the admin panel
+function showAllTeamsAdmin() {
+  
+  const list = document.getElementById("allTeamsList");
+  const teams = getTeams(); //loads the teams from local storage
+  
+  list.innerHTML = ""; //clears the existing list 
+
+  for (const [teamName, data] of Object.entries(teams)) { //This loops through the teams and adds them to the list 
+    
+    const li = document.createElement("li"); //creates a list item for each team 
+    //Creates the innerHTML for the teams display 
+    li.innerHTML = `<strong>${teamName}</strong> (${data.sport}) - Members: ${data.members.join(", ") || "None"} 
+      <button class="btn btn-danger btn-sm" onclick="deleteTeam('${teamName}')">Delete</button>`; //Delete button
+    list.appendChild(li);
+  }
+}
+
+//This function deletes a team when an admin presses the Delete Button
+function deleteTeam(teamName) {
+  
+  const teams = getTeams();
+  delete teams[teamName]; //removes the team that is selected by admin
+  saveTeams(teams); //saves the updated teams
+  
+  alert("Team deleted successfully."); //Shows alert to user in order to allow user to now that their action has been successful
+  showAllTeamsAdmin(); //Refreshes the team list 
+}
+</script>
 
 </body>
 </html>
-
-<script> //Custom JS for admin
-  const ADMIN_PASSWORD = "admin123"; //This is the passcode for the admin page
-  
-  function unlockAdmin() { //This function checks the password and unlocks the page when the user clicks enter
-    
-    const inputPass = document.getElementById("adminPass").value; //gets the entered password
-    if (inputPass === ADMIN_PASSWORD) {
-      document.getElementById("adminContent").style.display = "block";// This shows the admin the content of the page
-      showAllTeamsAdmin();
-    } else {
-      alert("Incorrect password."); //Will show user the incorrect password message if the password is not admin123
-    }
-  }
-  
-  //This displays all the teams with their members and a delete button
-  function showAllTeamsAdmin() {
-    const list = document.getElementById("allTeamsList");
-    const teams = getTeams(); //this loeads all the teams
-    list.innerHTML = ""; //This clears any of the old data
-  
-    //This loops for every team and shows their data
-    for (const [teamName, data] of Object.entries(teams)) {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${teamName}</strong> (${data.sport}) - Members: ${data.members.join(", ") || "None"}
-        <button onclick="deleteTeam('${teamName}')">Delete</button>`;
-      list.appendChild(li); //add it to the user list
-    }
-  }
-  //This is called when admin presses delete button
-  function deleteTeam(teamName) {
-    const teams = getTeams();
-    delete teams[teamName]; //remove team
-    saveTeams(teams); // save the updated list
-    showAllTeamsAdmin(); //refreshes the display for updated results
-  }
-  </script>
