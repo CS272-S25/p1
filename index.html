@@ -1,51 +1,75 @@
-<!DOCTYPE html> <!-- Disclaimer this is the home page, labeled as index.html (Stefan M)-->
-<html lang="en"> <!--Html document has language set to english (Stefan M)-->
+<!DOCTYPE html>
+<html lang="en">
 
-<head> <!-- Contains the meta information (Stefan M)-->
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Initial scale was placed so website looks good on mobile devices as well(Stefan M)-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--Allows for proper viewing on all devices-->
   <title>UW Madison Intramural Sports</title>
-  <link rel="stylesheet" href="style.css" /> <!--Links to style sheet should be on every page (Stefan M)-->
+  <link rel="stylesheet" href="style.css" /> <!--Global styling sheet-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!--Bootstrap for nav and page structure-->
+
+  <style> /*Same as other pages as well */
+    html, body {
+      height: 100%; /* Makes sure that content fills page*/
+    }
+
+    body {
+      display: flex;
+      flex-direction: column; /*Vertical arrangement*/
+    }
+
+    main {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #dddddd;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
+<body>
 
-<body> <!-- Main content on page(Stefan M)-->
-
-  <header> <!--Top section of page(Stefan M)-->
-    <h1>UW Madison Intramural Sports</h1> <!--Main Heading (Stefan M)-->
-    
-    <nav> <!--Nav Bar for this page includes index, register, teams, and schedule(Stefan M) -->
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="teams.html">Team Registration</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="myTeam.html">My Team</a></li>
-        <li><a href="admin.html">Admin Page</a></li>
-      </ul>
-    </nav>
-
-  </header>
-
-  <main> <!--Main content of page(Stefan M)-->
-    <section id="intro"> <!--Section ID labels this section as the intro section(Stefan M)-->
-      <h2>Welcome to the UW Madison Intramural Sports Website</h2>
-      <!--Description of UW Intramural Sports (Madison S)--> 
-      <p> Whether you’re showing up or showing off, there’s a team for you in intramural sports. 
-        Play alongside your besties, roommates, classmates, pledge class, or random strangers in 
-        a variety of sports and activities throughout the year. You get to pick the day and time 
-        that work for your team so you can still balance school, work, and everything else you have 
-        going on. All league winners receive a coveted champ shirt as well as campus bragging rights. </p>
-
-
-      <p>This is where you can register, manage your teams, and view schedules.</p>
-      <button onclick="showAlert()">Proceed To Register Hub</button> <!--When clicked javascript function brings user to Register page hub(Stefan M)-->
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 UW-Madison | Group 1</p> <!--Group label showing that this our work, will be on every page make sure to add(Stefan M)-->
-  </footer>
-
+<header>
   
-  <script src="script.js"></script> <!--Links the javascript file so that the this page has proper behavior-->
+  <h1>UW Madison Intramural Sports</h1>
+
+  <nav class="bg-danger text-white p-3"> <!--Nav bar should have Bootstrap and include all pages-->
+    <ul class="nav justify-content-center">
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="teams.html">Team Registration</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="schedule.html">Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="myTeam.html">My Team</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="admin.html">Admin Page</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="Esports.html">Esports Info</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="creators.html">About Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main> <!--Content for page starts here-->
+  
+  <section id="intro">
+    <h2>Welcome to the UW Madison Intramural Sports Website</h2>
+    <p>Whether you're showing up or showing off, there's a team for you.</p>
+    <p>This is where you can register, manage your teams, and view schedules.</p>
+    <button class="btn btn-primary" onclick="location.href='teams.html'">Proceed To Register Hub</button>
+  </section>
+
+</main>
+
+<!-- Recreation Wellbeing logo and footer under content -->
+<div class="text-center my-4">
+  <img src="wellbeingimage.png" alt="Recreation & Wellbeing UW Madison" style="max-width: 200px;">
+</div>
+
+<footer>
+  <p>&copy; 2025 UW-Madison | Group 1</p>
+</footer>
+
 </body>
 </html>

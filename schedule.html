@@ -3,141 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Teams | UW Madison Intramural Sports</title>
-  <link rel="stylesheet" href="style.css" /> <!-- Link to external CSS -->
+  <title>Intramural Sports Schedule | UW Madison Intramural Sports</title>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  
   <style>
-    /* Basic styling for the body */
+    html, body {
+      height: 100%;
+    }
+
     body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #eee;
-    }
-
-    /* Style for the header section */
-    header {
-      background: #fff;
-      padding: 10px 20px;
-      border-bottom: 2px solid #ccc;
-      margin-bottom: 20px;
-    }
-
-    /* Main Heading (Stefan M) */
-    header h1 {
-      margin: 0;
-      color: #c5050c;
-    }
-
-    /* Nav Bar should be the same as rest of navbars (Stefan M) */
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 10px 0 0;
       display: flex;
-      gap: 15px;
+      flex-direction: column;
     }
 
-    nav ul li {
-      display: inline;
+    main {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
     }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
+    footer {
+      background-color: #dddddd;
+      text-align: center;
+      padding: 10px;
     }
 
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-
-    /* Style for the main heading */
-    h1 {
-      color: #222;
-    }
-
-    /* Style for the dropdown menu */
-    select {
-      margin-top: 10px;
-      padding: 5px;
-    }
-
-    /* Style for the schedule display box */
     .schedule {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       margin-top: 20px;
-      background: #fff;
-      padding: 15px;
-      border: 1px solid #ccc;
-    }
-
-    /* Style for the schedule's heading */
-    .schedule h2 {
-      margin-top: 0;
-    }
-
-    /* Style for the list of games */
-    .schedule ul {
-      padding-left: 15px;
-    }
-
-    .schedule li {
-      margin-bottom: 5px;
     }
   </style>
+
 </head>
 <body>
-  
-  <!-- Header section with navigation -->
-  <header>
-    <h1>My Teams</h1> <!-- Main Heading (Stefan M) -->
-    <nav> <!-- Nav Bar should be the same as rest of navbars (Stefan M) -->
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="teams.html">Team Registration</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="myTeam.html">My Team</a></li>
-        <li><a href="admin.html">Admin Page</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Main title of the page -->
+<header>
+
   <h1>Intramural Sports Schedule</h1>
+  <nav class="bg-danger text-white p-3">
+    <ul class="nav justify-content-center">
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="teams.html">Team Registration</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="schedule.html">Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="myTeam.html">My Team</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="admin.html">Admin Page</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="Esports.html">Esports Info</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="creators.html">About Us</a></li>
+    </ul>
+  </nav>
 
-  <!-- Label and dropdown for selecting a sport -->
-  <label for="sport">Pick a sport:</label>
-  <select id="sport">
+</header>
+
+<main class="container mt-4"> <!--Bootstrap container-->
+
+  <label for="sport" class="form-label">Pick a sport:</label> <!--Label for dropdown menu-->
+  
+  <!--Dropdown to select which sport's schedule to view-->
+  <select id="sport" class="form-select">
     <option value="basketball">Basketball</option>
     <option value="soccer">Soccer</option>
     <option value="volleyball">Volleyball</option>
     <option value="ultimate">Ultimate Frisbee</option>
-    <option value="badminton">Badminton</option>
-    <option value="beachvolleyball">Beach Volleyball</option>
-    <option value="cricket">Cricket</option>
-    <option value="dogeball">Dogeball</option>
-    <option value="flagfootball">Flag Football</option>
-    <option value="floorhockey">Floor Hockey</option>
-    <option value="golf">Golf</option>
-    <option value="icehockey">Ice Hockey</option>
-    <option value="indoorsoccer">Indoor Soccer</option>
-    <option value="pickleball">Pickleball</option>
-    <option value="softball">Softball</option>
-    <option value="spikeball">spikeball</option>
-    <option value="supersmashbros">Super Smash Bros</option>
-    <option value="tabletennis">Table Tennis</option>
-    <option value="tennis">Tennis</option>
-    <option value="trivia">Trivia</option>
     <option value="esports">Esports</option>
   </select>
 
-  <!-- This div will contain the schedule for the selected sport -->
-  <div class="schedule" id="schedule">
-    <!-- Schedule shows up here -->
+  <div class="schedule mt-4" id="schedule">
+    <!-- Schedule will be loaded with javascripthere -->
   </div>
 
-  <script>
-    // Object storing schedules for each sport
-   const allSchedules = {
+</main>
+
+<!-- Recreation Wellbeing logo and footer below page content  -->
+<div class="text-center my-4">
+  <img src="wellbeingimage.png" alt="Recreation & Wellbeing UW Madison" style="max-width: 200px;">
+</div>
+
+<footer>
+  <p>&copy; 2025 UW-Madison | Group 1</p>
+</footer>
+
+<script>
+// Object holds all schedule data for each sport
+const allSchedules = {
   basketball: [
     "Mon 6PM: Hoopers vs Dunk Squad",
     "Wed 7PM: Net Breakers vs Rim Rattlers"
@@ -154,95 +106,39 @@
     "Tue 7PM: Frisbee Fanatics vs Sky Spikers",
     "Thu 5PM: Disc Jockeys vs Floaters"
   ],
-  badminton: [
-    "Wed 4PM: Birdie Bashers vs Smash Masters",
-    "Fri 3PM: Net Ninjas vs Feathered Fury"
-  ],
-  beachvolleyball: [
-    "Sat 2PM: Sand Slammers vs Dune Divers",
-    "Sun 1PM: Beach Bums vs Spike Tide"
-  ],
-  cricket: [
-    "Sun 10AM: Wicket Warriors vs Batting Legends",
-    "Sat 3PM: Boundary Breakers vs Spin Kings"
-  ],
-  dodgeball: [
-    "Mon 5PM: Ball Dodgers vs Hit Squad",
-    "Thu 4PM: Last Ones Standing vs Rubber Rebels"
-  ],
-  flagfootball: [
-    "Tue 6PM: Touchdown Tribe vs Huddle Hustlers",
-    "Fri 5PM: Blitz Crew vs End Zone Elites"
-  ],
-  floorhockey: [
-    "Wed 8PM: Puck Pals vs Stick Masters",
-    "Mon 7PM: Floor Flyers vs Goal Patrol"
-  ],
-  golf: [
-    "Sat 9AM: The Bogey Boys vs Par Hunters",
-    "Sun 11AM: Swing Kings vs Birdie Bunch"
-  ],
-  icehockey: [
-    "Thu 9PM: Ice Breakers vs Frost Giants",
-    "Tue 8PM: Chill Blades vs Goal Crushers"
-  ],
-  indoorsoccer: [
-    "Fri 6PM: Wall Kickers vs Goal Machines",
-    "Mon 4PM: Turf Titans vs Indoor Invaders"
-  ],
-  pickleball: [
-    "Tue 3PM: Paddle Smashers vs Net Flickers",
-    "Thu 2PM: Court Kings vs Dink Masters"
-  ],
-  softball: [
-    "Sat 1PM: Diamond Divas vs Base Bandits",
-    "Sun 12PM: Glove Squad vs Home Run Heroes"
-  ],
-  spikeball: [
-    "Fri 2PM: Spike Bros vs Slam Champs",
-    "Sat 11AM: Net Ninjas vs Roundnet Rebels"
-  ],
-  supersmashbros: [
-    "Wed 6PM: Smash Legends vs Pixel Punchers",
-    "Fri 7PM: Final Stock vs Button Mashers"
-  ],
-  tabletennis: [
-    "Mon 3PM: Paddle Patrol vs Spin Doctors",
-    "Wed 5PM: Smash Serve vs Ping Kings"
-  ],
-  tennis: [
-    "Thu 3PM: Love All vs Match Makers",
-    "Sat 10AM: Net Aces vs Baseline Bandits"
-  ],
-  trivia: [
-    "Wed 8PM: Brainiacs vs Quiztopians",
-    "Fri 6PM: Fact Finders vs Mind Benders"
-  ],
   esports: [
     "Tue 7PM: GG Squad vs No Scope Ninjas",
     "Thu 8PM: Pixel Warriors vs Lag Legends"
   ]
 };
 
-    // Reference to the dropdown and schedule display box
-    const sportDropdown = document.getElementById("sport");
-    const scheduleBox = document.getElementById("schedule");
+const sportDropdown = document.getElementById("sport"); //Select dropdown for sports
+const scheduleBox = document.getElementById("schedule");//Where shedule is displayed
 
-    // Function to display the schedule based on selected sport
-    function showSchedule() {
-      // Get the selected sport
-      const sport = sportDropdown.value;
-      // Retrieve the corresponding games array
-      const games = allSchedules[sport];
+function showSchedule() { //This function shows the schedule for the selected sport
+  
+  const sport = sportDropdown.value;//Gets selected sport 
+  const games = allSchedules[sport] || []; //Gets array or no array if there is a schedule 
 
-      // Start building the HTML content
-      let html = `<h2>${sportDropdown.options[sportDropdown.selectedIndex].text}</h2>`;
-      html += "<ul>";
+  let html = `<h2>${sportDropdown.options[sportDropdown.selectedIndex].text} Schedule</h2>`; //(Updates the schedule chosen when selected from dropdown.)
+  if (games.length === 0) {
+    html += "<p>No games scheduled yet.</p>";
+  } else {
+    html += "<ul>";
+    games.forEach(game => {
+      html += `<li>${game}</li>`;
+    });
+    html += "</ul>";
+  }
 
-      // Add each game as a list item
-      games.forEach(function(game) {
-        html += `<li>${game}</li>`;
-      });
+  scheduleBox.innerHTML = html; //Updates the schedule box
+}
 
-      html += "</ul>";
+sportDropdown.addEventListener("change", showSchedule);
 
+// Load initial schedule on page load
+showSchedule();
+</script>
+
+</body>
+</html>
