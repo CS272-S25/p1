@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Page should be responsive and look good on all devices-->
+  <title>About the Creators | UW Madison Intramural Sports</title> <!-- Page title that is shown in browser tab should be About the Creators-->
+  <link rel="stylesheet" href="style.css" /> <!-- Links style.css the global styling sheet to page-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> <!--Bootstrap styling link for structure and nav bar-->
+
+  <style> /*Custom css added so that image and footer would stick to bottom of apge*/
+
+    html, body {
+      height: 100%; /*Page should fill screen*/
+    }
+
+    body {
+      display: flex;
+      flex-direction: column; /* Stacks the header, main body, footer vertically */
+    }
+
+    main {
+      flex: 1;
+      background-color: white; /*Should create a white background for the the main content area*/
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #dddddd; /*Light grey for footer background*/
+      text-align: center; /*Centers the footer text */
+      padding: 10px;
+    }
+
+    /* Custom styling for the About Us Page */
+    .creator {
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Should create shadow around the creator card*/
+    }
+
+    .creator img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; /*Makes the image circular*/
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .bio {
+      display: none; /* The creator bio should be hidden until the user clicks the bio button to reveal bio description*/
+      margin-top: 10px;
+      text-align: left;
+    }
+  
+  </style>
+</head>
+<body>
+
+<header>
+  
+  <h1>About the Creators</h1> <!--Navigation bar for this page should use Bootstrap nav styling-->
+  <nav class="bg-danger text-white p-3">
+    <ul class="nav justify-content-center">
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="teams.html">Team Registration</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="schedule.html">Schedule</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="myTeam.html">My Team</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="admin.html">Admin Page</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="Esports.html">Esports Info</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="creators.html">About Us</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+
+<!-- Creator 1 -->
+<div class="creator"> 
+  <img src="Stefan.jpg" alt="Creator 1"> <!--Creator profile picture-->
+  <h3>Stefan Mihailescu</h3> <!-- Creator name-->
+  <button class="btn btn-primary" onclick="toggleBio('bio1')">View Bio</button> <!-- This button should show and hide the bio when clicked-->
+  <p class="bio" id="bio1">Hello my name is Stefan, I am an Information Science Major and Data Science Minor. I am currently also studying Cybersecurity and also working at the DoIT helpdesk on campus. In my free time I like spending time with my girlfriend and cats. I like exercising and recently I picked up the Ukulele.</p>
+</div>
+
+<!-- Creator 2 -->
+<div class="creator">
+  <img src="Madison.jpg" alt="Creator 2">
+  <h3>Madison Smith</h3>
+  <button class="btn btn-primary" onclick="toggleBio('bio2')">View Bio</button>
+  <p class="bio" id="bio2">Hi, my name is Madison and I am a junior studying Information Science and Graphic Design. I am interested in web design and social media. Outside of school I enjoy going to the gym and Formula 1.</p>
+</div>
+
+<!-- Creator 3 -->
+<div class="creator">
+  <img src="Dui.jpg" alt="Creator 3">
+  <h3>Dui Cao</h3>
+  <button class="btn btn-primary" onclick="toggleBio('bio3')">View Bio</button>
+  <p class="bio" id="bio3">Hi, my name is Dui Cao. I am a senior international student currently attending the University of Wisconsin-Madison. I majored in Information Science, and I learned coding languages including Java and HTML. I personally really enjoy playing basketball or video games in my free time.</p>
+</div>
+
+<!-- Creator 4 -->
+<div class="creator">
+  <img src="Ruike Lin.JPG" alt="Creator 4">
+  <h3>Ruike Lin</h3>
+  <button class="btn btn-primary" onclick="toggleBio('bio4')">View Bio</button>
+  <p class="bio" id="bio4">Hi, my name is Ruike Lin. I’m an international student majoring in Information Science with a strong focus on Human-Computer Interaction. I have experience working as an undergraduate assistant, and outside of studies I am a passionate dog lover and often take my dogs to the park.</p>
+</div>
+
+</main>
+
+<!-- UW Madison Logo below rest of content  -->
+<div class="text-center my-4">
+  <img src="wellbeingimage.png" alt="Recreation & Wellbeing UW Madison" style="max-width: 200px;">
+</div>
+
+<footer> <!--Footer conetent that should stick to bottom with logo-->
+  <p>&copy; 2025 UW-Madison | Group 1</p>
+</footer>
+
+<script>
+
+// This function is to toggle the bio visibility when "View Bio" button is clicked  (Custom script for this page)
+function toggleBio(id) {
+  const bio = document.getElementById(id);
+  
+  if (bio.style.display === "none" || bio.style.display === "") {
+    bio.style.display = "block"; //If the bio is hidden when button clicked show it
+  } else {
+    bio.style.display = "none"; //If the bio is not hidden when button is clicked hide it
+  }
+}
+
+</script>
+
+</body>
+</html>
